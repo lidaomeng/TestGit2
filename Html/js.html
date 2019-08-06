@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        .inSize{
+            height: 120px;
+            width: 600px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function check() {
+            obj = document.form1;
+            name = obj.uName.value;
+            if (name == ""){
+                return;
+            }
+            if (obj.uSex.checked == true){
+                sex = "男";
+                document.getElementById("textInfo").style.cssText = "background-color:#000; color:#FFF";
+            } else {
+                sex = "女";
+                document.getElementById("textInfo").style.cssText = "background-color:#FF9900; color:#000";
+            }
+
+            index = obj.city.selectedIndex;
+            selCity = obj.city.options[index].text;
+            ah = new Array();
+            for (let i = 4; i <= 8; i++) {
+                if (obj.elements[i].checked == true)
+                    ah.push(obj.elements[i].value);
+            }
+
+            if (ah == ""){
+                alert("请选择一项爱好！");
+                return;
+            }
+
+            str = "您所填写的信息：\n";
+            str += "您的姓名是："+name;
+            str += ","+sex;
+            str += "，居住在"+selCity;
+            str += "。您喜欢"+ah+"。";
+            document.getElementById("textInfo").value = str;
+        }
+
+        function getElements() {
+            num = document.forms[0].length;
+            num = "一共用了"+num +" 个表单元素";
+            alert(num);
+        }
+
+        function setFocus() {
+            document.getElementById("uName").focus();
+        }
+    </script>
+</head>
+<body onload="setFocus()">
+请填写个人信息：<br><br>
+<div style="border-style: solid; border-color: #F00; border-width: 1px; width: 600px">
+    <form id="form1" name="form1" method="post" action="javascript:check()">
+        <label>姓名：
+            <input type="text" name="uName" id="uName">
+            <br><br>
+        </label>
+        性别：
+        <label>
+            <input type="radio" name="radio" id="uSex" value="uSex" checked="checked">
+            男
+        </label>
+        <label>
+            <input type="radio" name="radio" id="uSex2" value="uSex" checked="checked">
+            女
+        </label>
+        <br><br>
+
+        <label>居住城市：
+            <select name="city" id="city">
+                <option selected="selected">北京</option>
+                <option>上海</option>
+                <option>广州</option>
+                <option>沈阳</option>
+                <option>天津</option>
+            </select>
+        </label>
+        <br><br>
+
+        爱好：
+        <label>
+            <input type="checkbox" name="zq" id="zq" value="足球">足球
+        </label>
+        <label>
+            <input type="checkbox" name="yy" id="yy" value="足球">音乐
+        </label>
+        <label>
+            <input type="checkbox" name="ly" id="ly" value="足球">旅游
+        </label>
+        <label>
+            <input type="checkbox" name="yx" id="yx" value="足球">游戏
+        </label>
+        <label>
+            <input type="checkbox" name="qt" id="qt" value="足球">其他
+        </label>
+        <br><br>
+
+        <input type="submit" name="button" id="button" value="提交">
+        <input type="reset" name="button2" id="button2" value="重置">
+    </form>
+    <br><br>
+
+    <textarea name="textInfo" cols="50" rows="4" readonly="readonly" class="inSize" id="textInfo"></textarea>
+    <br><br>
+
+    <input type="button" name="button3" id="button3" value="表单所用的元素个数" onclick="getElements()">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="ext-4.2.1-gpl/ext-all.js" type="text/javascript"></script>
+    <link href="ext-4.2.1-gpl/resources/css/ext-all.css">
+    <script type="text/javascript" src="ext-4.2.1-gpl/ext-lang-zh_CN.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    Ext.onReady(function(){
+        // 创建Ext.panl.Panel对象
+        var con = Ext.create('Ext.panel.Panel',
+            {
+                // 指定布局方式
+                layout: {
+                    align: 'center'
+                },
+                title: '查询图书',
+                height: 280, // 指定高度
+                renderTo: Ext.getBody(), // 指定将该容器追加到<body.../>元素中
+                // 指定对该容器中所有添加项进行的默认设置
+                defaults: {
+                    style:
+                        {
+                            padding: '5px',
+                        },
+                    bodyPadding: 5
+                },
+                // 为该Panel设置工具按钮
+                // 无需指定xtype属性，默认就是tool值，即工具按钮。
+                tools:[
+                    {
+                        // 指定刷新工具按钮
+                        type:'refresh',
+                        // 工具提示
+                        tooltip: '刷新页面',
+                        // 单击该工具按钮的事件处理函数
+                        handler: function(event, toolEl, panel)
+                        {
+                            alert("用户刷新数据");
+                        }
+                    },
+                    {
+                        type:'save',
+                        tooltip: '保存数据',
+                        handler: function(event, toolEl, panel)
+                        {
+                            alert("用户保存数据");
+                        }
+                    }
+                ],
+                // 指定该容器包含的组件
+                items: [
+                    // 第1个组件，没有指定xtype，默认是panel，表明嵌套了一个Panel
+                    {
+                        title: '出版社信息',
+                        height: 120, // 指定高度
+                        items: [
+                            {
+                                fieldLabel: '输入出版社',
+                                xtype: 'textfield'
+                            }
+                        ],
+                        flex: 2
+                    },
+                    // 第2个组件，没有指定xtype，默认是panel，表明嵌套了一个Panel
+                    {
+                        title: '作者信息',
+                        height: 120, // 指定高度
+                        items: [
+                            {
+                                fieldLabel: '输入作者',
+                                xtype: 'textfield'
+                            }
+                        ],
+                        flex: 2
+                    }
+                ]
+            });
+    });
+
+</script>
+
+</body>
+</html>
